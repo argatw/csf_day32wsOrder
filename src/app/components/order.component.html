@@ -1,0 +1,61 @@
+<p>order here!</p>
+
+<div class="box-it">
+    <form [formGroup]="orderForm" (ngSubmit)="processOrder()">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input type="text" size="30" formControlName="name">
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile:</td>
+                <td>
+                    <input type="text" size="30" formControlName="mobile">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Submit order here</button>
+                </td>
+                <td>
+                    <!-- <button type="submit" (click)="addItem()">Add</button> -->
+                </td>
+            </tr>
+        </table>
+        
+        <h3>Order item list:</h3>
+        <div style="margin-top: 15px" *ngIf="lineItemsArray.controls.length>0">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody formArrayName="lineItems">
+                    <tr *ngFor="let li of lineItemsArray.controls; let i= index" [formGroup]="li">
+                        <td>
+                            <input type="text" size="30" formControlName="item">
+                        </td>
+                        <td>
+                            <!-- <input type="number" min="1" formControlName="quantity"> -->
+                            <select formControlName="quantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="button" (click)="removeItem(i)">X</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <button type="submit" (click)="addItem()">>>> Add Item here</button>
+</div>

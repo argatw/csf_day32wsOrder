@@ -1,0 +1,11 @@
+<p>Inventory:</p>
+<div class="box-it" *ngFor="let o of ordersDB | keyvalue; let i=index;">
+    <table>
+        <tr>
+            <td>{{ o.key }}</td>
+            <td>{{ o.value.name }}</td>
+            <td><button (click)="edit(o.key)">EDIT</button></td>
+        </tr>
+    </table>
+    <!-- [<code>{{ o.key }}</code>] - <span>{{ o.value.name }}</span> -->
+</div>
